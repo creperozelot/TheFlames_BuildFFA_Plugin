@@ -1,7 +1,6 @@
 package theflames.buildffa.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,6 +12,7 @@ public class CommandBuild implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (sender instanceof Player) {
+
             Player player = (Player) sender;
             if (!StaticCache.buildmode) {
                 player.sendMessage(StaticCache.prefix + "§lBitte führe diesen Befehl nur auf einem Server aus der sich im Wartungsmodus befindet!");

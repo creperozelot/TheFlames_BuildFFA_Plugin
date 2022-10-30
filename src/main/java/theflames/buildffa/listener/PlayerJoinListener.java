@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import theflames.buildffa.Buildffa;
 import theflames.buildffa.StaticCache;
+import theflames.buildffa.scoreboard.BuildffaScoreboard;
 
 public class PlayerJoinListener implements Listener {
     @EventHandler
@@ -22,6 +23,8 @@ public class PlayerJoinListener implements Listener {
         int spawn_x = Buildffa.getInstance().getConfig().getInt("spawn_x");
         int spawn_y = Buildffa.getInstance().getConfig().getInt("spawn_y");
         int spawn_z = Buildffa.getInstance().getConfig().getInt("spawn_z");
+
+
 
 
         Location spawn = new Location(spawnworld, spawn_x, spawn_y, spawn_z);
@@ -57,6 +60,9 @@ public class PlayerJoinListener implements Listener {
         player.getInventory().setItem(3, sandstone2);
         player.getInventory().setItem(4, enderpearl);
         player.getInventory().setItem(5, cobweb);
+
+        //setscoreboard
+        new BuildffaScoreboard(player);
 
 
 

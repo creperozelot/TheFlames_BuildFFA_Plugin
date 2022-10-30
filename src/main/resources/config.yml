@@ -32,26 +32,7 @@ map: #Map Einstellungen
   deathheight: 12
 
 scoreboard: #Scoreboard einstellungen
-  killsuffix: ''
-  killprefix: ''
-  killscore: ''
-  killentry: ''
-  onlinesuffix: ''
-  onlineprefix: ''
-  onlinescore: ''
-  onlineentry: ''
-  mapsuffix: ''
-  mapprefix: ''
-  mapscore: ''
-  mapentry: ''
-  mapchangesuffix: ''
-  mapchangeprefix: ''
-  mapchangescore: ''
-  mapchangeentry: ''
-  teamingsuffix: ''
-  teamingprefix: ''
-  teamingscore: ''
-  teamingentry: ''
+  delay: 2 #in Seconds
 
 #MySQL
 mysql:

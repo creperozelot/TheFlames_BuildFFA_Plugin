@@ -5,7 +5,6 @@ import theflames.buildffa.commands.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import theflames.buildffa.listener.*;
 import theflames.buildffa.utils.MYSQL;
-import theflames.buildffa.utils.Scoreboard;
 
 import java.sql.*;
 
@@ -71,7 +70,6 @@ public final class Buildffa extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDamageListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDropItemEvent(), this);
         getServer().getPluginManager().registerEvents(new OnHungerListener(), this);
-        getServer().getPluginManager().registerEvents(new Scoreboard(), this);
     }
 
 }

@@ -40,9 +40,7 @@ public class PlayerDeathListener implements Listener {
         //Send Messages
         event.setDeathMessage(StaticCache.prefix + "Der Spieler §f" + killer.getName() + "§66ist §cGestorben!");
         player.sendMessage(StaticCache.prefix + "Du hast §f20§6 Coins §cVerloren.");
-        player.playSound(player.getLocation(), Sound.VILLAGER_DEATH, 100, 1);
         killer.sendMessage(StaticCache.prefix + "Du hast §f10§6 Coins §aBekommen.");
-        killer.playSound(player.getLocation(), Sound.LEVEL_UP, 100, 1);
 
     }
 }
