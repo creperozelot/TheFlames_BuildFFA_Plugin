@@ -56,9 +56,9 @@ scoreboard: #Scoreboard einstellungen
 #MySQL
 mysql:
   support: true
-  username: root
-  password: root
-  host: the-flames.de
-  port: 3306
-  db: test
+  username: username
+  password: password
+  host: youriporhostname
+  port: port
+  db: database
   secure: false
