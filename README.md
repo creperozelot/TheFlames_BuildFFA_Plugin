@@ -34,18 +34,18 @@ if (coins >= 50) {
 
 ### Placeholder
 
-| Type | Standalone     | Description                |
-| :-------- | :------- | :------------------------- |
-| `Core` | `%prime_coins%` | Zeigt die Coins von einem Spieler an. |
-| `Core` | `%prime_onmins%` | Anzahl der Spielminuten. |
-| `Core` | `%prime_ontime_1%` | Spielzeit formatiert (4:36). |
-| `Core` | `%prime_ontime_2%` | Spielzeit formatiert (4 Stunden 36 Minuten). |
-| `Core` | `%prime_ontime_3%` | Spielzeit formatiert (4h 36m). |
-| `Core` | `%prime_ontime_4%` | Spielzeit formatiert (4h). |
-| `Clan` | `%clan_name%` | Name des Clans. |
-| `Clan` | `%clan_tag%` | Clantag. |
-| `Clan` | `%clan_tag_formatted%` | Clantag mit [] wenn Clan != null. |
-| `Clan` | `%clan_count%` | Anzahl der Clanmember. |
+| Type | Standalone | Placeholder     | Description                |
+| :-------- | :-------- | :------- | :------------------------- |
+| `Core` | `true` | `%prime_coins%` | Zeigt die Coins von einem Spieler an. |
+| `Core` | `true` | `%prime_onmins%` | Anzahl der Spielminuten. |
+| `Core` | `true` | `%prime_ontime_1%` | Spielzeit formatiert (4:36). |
+| `Core` | `true` | `%prime_ontime_2%` | Spielzeit formatiert (4 Stunden 36 Minuten). |
+| `Core` | `true` | `%prime_ontime_3%` | Spielzeit formatiert (4h 36m). |
+| `Core` | `true` | `%prime_ontime_4%` | Spielzeit formatiert (4h). |
+| `Clan` | `false` | `%clan_name%` | Name des Clans. |
+| `Clan` | `false` | `%clan_tag%` | Clantag. |
+| `Clan` | `false` | `%clan_tag_formatted%` | Clantag mit [] wenn Clan != null. |
+| `Clan` | `false` | `%clan_count%` | Anzahl der Clanmember. |
 
 
 
