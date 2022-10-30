@@ -1,0 +1,29 @@
+name: Buildffa
+version: '${project.version}'
+main: theflames.buildffa.Buildffa
+authors: [ creperozelot ]
+description: BuildFFA | Dieser Modie wurde von The Flames Entwickelt...
+website: https://the-flames.de
+depend:
+
+commands:
+  heal:
+    description: Heilt einen Spieler oder dich Selbst.
+    permission: tf.buildffa.heal
+    permission-message: §cDu hast keine Berechtigung für diesen Command.
+  setspawn:
+    description: Setzt den Spawn von BuildFFA.
+    permission: tf.buildffa.setspawn
+    permission-message: §cDu hast keine Berechtigung für diesen Command.
+  build:
+    description: Aktiviert den Build Modus
+    permission: tf.buildffa.build
+    permission-message: §cDu hast keine Berechtigung für diesen Command.
+  db-test:
+    description: Testet die Verbindung zu Datenbank.
+    permission: tf.buildffa.testdb
+    permission-message: §cDu hast keine Berechtigung für diesen Command.
+  setdeathheight:
+    description: Setzt die Todes höhe.
+    permission: tf.buildffa.setdeathheight
+    permission-message: §cDu hast keine Berechtigung für diesen Command.

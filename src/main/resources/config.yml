@@ -1,0 +1,64 @@
+
+#___              _        _  ___    ___    _____
+#(  _`\         _ (_ )     ( )(  _`\ (  _`\ (  _  )
+#| (_) ) _   _ (_) | |    _| || (_(_)| (_(_)| (_) |
+#|  _ <'( ) ( )| | | |  /'_` ||  _)  |  _)  |  _  |
+#| (_) )| (_) || | | | ( (_| || |    | |    | | | |
+#(____/'`\___/'(_)(___)`\__,_)(_)    (_)    (_) (_)
+#
+
+#General Settings
+world: 'world'
+spawn_x: 1
+spawn_y: 1
+spawn_z: 1
+prefix: '§8[§eBuildFFA§8] >>§6 '
+join-message: 'Der Spieler §f{player}§r§6 ist §eBuildFFA-1§6 beigetreten.'
+quit-message: 'Der Spieler §f{player}§r§6 ist §eBuildFFA-1§6 verlassen.'
+coins:
+  remove: 20 #Remove Coins on Player Death
+  add: 10 #Add Coins on Player Kill
+
+# Nachrichten
+message:
+  command:
+    deathheight: 'Die Todeshöhe wurde auf §f{height}§6 gesetzt!'
+    mysql:
+      connected: '§aDatenbank verbindung => Test Erfolgreich'
+      not-connected: '§cDatenbank verbindung  => Test Fehlgeschlagen'
+
+map: #Map Einstellungen
+  changedelay: 600
+  deathheight: 12
+
+scoreboard: #Scoreboard einstellungen
+  killsuffix: ''
+  killprefix: ''
+  killscore: ''
+  killentry: ''
+  onlinesuffix: ''
+  onlineprefix: ''
+  onlinescore: ''
+  onlineentry: ''
+  mapsuffix: ''
+  mapprefix: ''
+  mapscore: ''
+  mapentry: ''
+  mapchangesuffix: ''
+  mapchangeprefix: ''
+  mapchangescore: ''
+  mapchangeentry: ''
+  teamingsuffix: ''
+  teamingprefix: ''
+  teamingscore: ''
+  teamingentry: ''
+
+#MySQL
+mysql:
+  support: true
+  username: root
+  password: root
+  host: the-flames.de
+  port: 3306
+  db: test
+  secure: false
