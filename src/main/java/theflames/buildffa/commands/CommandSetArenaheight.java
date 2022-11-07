@@ -7,14 +7,15 @@ import org.bukkit.entity.Player;
 import theflames.buildffa.Buildffa;
 import theflames.buildffa.StaticCache;
 
-public class CommandSetDeathheight implements CommandExecutor {
+public class CommandSetArenaheight implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
-        if (sender instanceof Player) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (sender instanceof  Player) {
             Player player = (Player) sender;
             int playerheight = (int) player.getLocation().getY();
+            Buildffa.getInstance().getConfig().set("map.arenaheight", playerheight);
+            Buildffa.getInstance().saveConfig();
             player.sendMessage(StaticCache.prefix + Buildffa.getInstance().getConfig().getString("message.command.deathheight").replace("{height}", Integer.toString(playerheight)));
-            Buildffa.getInstance().getConfig().set("map.deathheight", playerheight);
         } else {
             sender.sendMessage("§cDu Kannst diesen Befehl nur als Spieler ausführen!");
         }

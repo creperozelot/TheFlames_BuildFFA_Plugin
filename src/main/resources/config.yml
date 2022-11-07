@@ -22,7 +22,10 @@ coins:
 # Nachrichten
 message:
   command:
+    configreload: '§cDie Config wird neu geladen!'
+    configreloadsuccess: '§aDie Config wurde neu geladen!'
     deathheight: 'Die Todeshöhe wurde auf §f{height}§6 gesetzt!'
+    arenaheight: 'Die Arenahöhe wurde auf §f{height}§6 gesetzt!'
     mysql:
       connected: '§aDatenbank verbindung => Test Erfolgreich'
       not-connected: '§cDatenbank verbindung  => Test Fehlgeschlagen'
@@ -30,12 +33,14 @@ message:
 map: #Map Einstellungen
   changedelay: 600
   deathheight: 12
+  arenaheight: 80
 
 scoreboard: #Scoreboard einstellungen
   delay: 2 #in Seconds
 
 #MySQL
 mysql:
+  use: true # this needs to be true otherwise the plugin wont work! DO NOT TOUCH
   support: true
   username: username
   password: password

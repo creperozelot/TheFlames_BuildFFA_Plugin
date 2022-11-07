@@ -4,7 +4,6 @@ main: theflames.buildffa.Buildffa
 authors: [ creperozelot ]
 description: BuildFFA | Dieser Modie wurde von The Flames Entwickelt...
 website: https://the-flames.de
-depend:
 
 commands:
   heal:
@@ -26,4 +25,16 @@ commands:
   setdeathheight:
     description: Setzt die Todes höhe.
     permission: tf.buildffa.setdeathheight
+    permission-message: §cDu hast keine Berechtigung für diesen Command.
+  getkills:
+    description: Entwickler Command, Zeigt deine Tode an.
+    permission: tf.buildffa.getkills.dev
+    permission-message: §cDu hast keine Berechtigung für diesen Command.
+  setarenaheight:
+    description: Setzt die Arena höhe.
+    permission: tf.buildffa.setarenaheight
+    permission-message: §cDu hast keine Berechtigung für diesen Command.
+  reloadbuildffaconfig:
+    description: Lädt die Config neu.
+    permission: tf.buildffa.reload
     permission-message: §cDu hast keine Berechtigung für diesen Command.

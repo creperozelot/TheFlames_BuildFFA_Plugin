@@ -34,7 +34,7 @@ public final class Buildffa extends JavaPlugin {
         this.getLogger().info("===================");
         MYSQL.connect();
         if (MYSQL.isConnected()) {
-            MYSQL.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int);");
+            MYSQL.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, TEMPKILLS int, TEMPDEATHS int);");
         }
 
         registerCommand();
@@ -57,6 +57,9 @@ public final class Buildffa extends JavaPlugin {
         this.getCommand("build").setExecutor(new CommandBuild());
         this.getCommand("db-test").setExecutor(new CommandDBconnection());
         this.getCommand("setdeathheight").setExecutor(new CommandSetDeathheight());
+        this.getCommand("getkills").setExecutor(new DevCommandMySQLgetKills());
+        this.getCommand("setarenaheight").setExecutor(new CommandSetArenaheight());
+        this.getCommand("reloadbuildffaconfig").setExecutor(new CommandReload());
     }
 
     private void registerListener() {

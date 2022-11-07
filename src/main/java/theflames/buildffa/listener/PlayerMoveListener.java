@@ -23,6 +23,8 @@ public class PlayerMoveListener implements Listener {
 
         Location spawnpoint = new Location(spawn, spawn_x, spawn_y, spawn_z);
 
+        //teleport to spawn is player under deathheight
+
         if (playerlocation.getY() <= Buildffa.getInstance().getConfig().getInt("map.deathheight")) {
             player.getInventory().clear();
             player.teleport(spawnpoint);
@@ -54,7 +56,6 @@ public class PlayerMoveListener implements Listener {
             player.getInventory().setItem(5, cobweb);
 
         }
-
     }
 
 

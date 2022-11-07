@@ -13,6 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import theflames.buildffa.Buildffa;
 import theflames.buildffa.StaticCache;
 import theflames.buildffa.scoreboard.BuildffaScoreboard;
+import theflames.buildffa.utils.MYSQL;
+import theflames.buildffa.utils.stats;
 
 public class PlayerJoinListener implements Listener {
     @EventHandler
@@ -64,8 +66,10 @@ public class PlayerJoinListener implements Listener {
         //setscoreboard
         new BuildffaScoreboard(player);
 
+        //set Mysql
+        stats.createPlayer(player.getUniqueId().toString());
 
-
+        MYSQL.update("UPDATE `Stats` SET `TEMPKILLS`='0',`TEMPDEATHS`='0' WHERE `UUID`='" + player.getUniqueId() + "';");
 
     }
 }

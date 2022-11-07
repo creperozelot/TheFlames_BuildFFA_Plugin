@@ -6,6 +6,7 @@ public class StaticCache {
 
     public static boolean testmode = false;
 
+
     public static boolean buildmode = false;
 
 }
