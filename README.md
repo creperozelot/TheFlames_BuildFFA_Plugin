@@ -18,7 +18,7 @@ Diese API Ermlöglicht es uns Viele Dinge für unser Plugin zu vereinheitlichen.
 ```
 
 
-### Coin System
+### Coin System (Deprecated)
 Hier findest du eine Kurze übersicht und ein Besipiel wie unser Coin System Arbeitet.
 ```java
 [Command Executer and Classes above ...]
