@@ -19,7 +19,7 @@ public class EntityDamageListener implements Listener {
     @EventHandler
     public static void onPlayerDamagaOverArenaHeight(EntityDamageEvent event) {
         Player player = (Player) event.getEntity();
-        if (player.getHeight() >= Buildffa.getInstance().getConfig().getInt("map.arenaheight")) {
+        if (player.getLocation().getY() >= Buildffa.getInstance().getConfig().getInt("map.arenaheight")) {
             event.setCancelled(true);
         }
     }

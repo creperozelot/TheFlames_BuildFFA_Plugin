@@ -4,7 +4,9 @@ main: theflames.buildffa.Buildffa
 authors: [ creperozelot ]
 description: BuildFFA | Dieser Modie wurde von The Flames Entwickelt...
 website: https://the-flames.de
-
+depend:
+  - PrimeCore
+  - ProtocolLib
 commands:
   heal:
     description: Heilt einen Spieler oder dich Selbst.

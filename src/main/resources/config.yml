@@ -40,7 +40,7 @@ scoreboard: #Scoreboard einstellungen
 
 #MySQL
 mysql:
-  use: true # this needs to be true otherwise the plugin wont work! DO NOT TOUCH
+  use: true # this needs to be true otherwise the plugin wont work! DO NOT TOUCH / NoMYSQL will be added soon.
   support: true
   username: username
   password: password

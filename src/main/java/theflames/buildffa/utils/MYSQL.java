@@ -22,9 +22,9 @@ public class MYSQL {
         if (!isConnected())
             try {
                 con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
-                System.out.println("| [BuildFFA] MYSQL Verbindung hergestellt                     |");
+                System.out.println("| [BuildFFA] MYSQL Verbindung hergestellt");
             } catch (SQLException e) {
-                System.out.println("| [BuildFFA] MYSQL Verbindung konnte nicht hergestellt werden.|");
+                System.out.println("| [BuildFFA] MYSQL Verbindung konnte nicht hergestellt werden.");
             }
     }
 
@@ -61,6 +61,75 @@ public class MYSQL {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static boolean PlayerExist(String uuid) throws SQLException {
+        Statement stmt = con.createStatement();
+        return stmt.executeQuery("SELECT * FROM `Stats` WHERE `PLAYER`='" + uuid + "';").next();
+    }
+
+    public static ResultSet getDeath(String uuid) throws SQLException {
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT `DEATHS` FROM `Stats` WHERE `UUID`='" + uuid + "';");
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void addDeath(String uuid) throws SQLException {
+        Statement stmt = con.createStatement();
+        int deaths = getDeath(uuid).getInt("DEATHS") + 1;
+        stmt.execute("UPDATE `Stats` SET `DEATHS`='" + deaths + "';");
+    }
+
+    public static ResultSet getTempDeath(String uuid) throws SQLException {
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT `TEMPDEATHS` FROM `Stats` WHERE `UUID`='" + uuid + "';");
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void addTempDeath(String uuid) throws SQLException {
+        Statement stmt = con.createStatement();
+        int deaths = getTempDeath(uuid).getInt("TEMPDEATHS") + 1;
+        stmt.execute("UPDATE `Stats` SET `TEMPDEATHS`='" + deaths + "';");
+    }
+
+    public static ResultSet getKill(String uuid) throws SQLException {
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT `KILLS` FROM `Stats` WHERE `UUID`='" + uuid + "';");
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void addKill(String uuid) throws SQLException {
+        Statement stmt = con.createStatement();
+        int kills = getKill(uuid).getInt("KILLS") + 1;
+        stmt.execute("UPDATE `Stats` SET `KILLS`='" + kills + "';");
+    }
+
+    public static ResultSet getTempKill(String uuid) throws SQLException {
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT `TEMPKILLS` FROM `Stats` WHERE `UUID`='" + uuid + "';");
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void addTempKill(String uuid) throws SQLException {
+        Statement stmt = con.createStatement();
+        int kills = getTempKill(uuid).getInt("TEMPKILLS") + 1;
+        stmt.execute("UPDATE `Stats` SET `TEMPKILLS`='" + kills + "';");
     }
 }
 

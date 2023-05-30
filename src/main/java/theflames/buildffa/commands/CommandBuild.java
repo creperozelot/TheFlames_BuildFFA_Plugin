@@ -7,20 +7,26 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import theflames.buildffa.StaticCache;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class CommandBuild implements CommandExecutor {
+
+    public static List<UUID> buildmodelist = new ArrayList<>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (sender instanceof Player) {
 
             Player player = (Player) sender;
-            if (!StaticCache.buildmode) {
-                player.sendMessage(StaticCache.prefix + "§lBitte führe diesen Befehl nur auf einem Server aus der sich im Wartungsmodus befindet!");
-                Bukkit.broadcastMessage(StaticCache.prefix + "§aBau-Modus Aktiviert!");
-                StaticCache.buildmode = true;
+
+            if (buildmodelist.contains(player.getUniqueId())) {
+                player.sendMessage(StaticCache.prefix + "§aBau-Modus §cDeaktiviert!");
+                buildmodelist.remove(player.getUniqueId());
             } else {
-                Bukkit.broadcastMessage(StaticCache.prefix + "§aBau-Modus §cDeaktiviert§a!");
-                StaticCache.buildmode = false;
+                player.sendMessage(StaticCache.prefix + "§aBau-Modus Aktiviert!");
+                buildmodelist.add(player.getUniqueId());
             }
 
         } else {

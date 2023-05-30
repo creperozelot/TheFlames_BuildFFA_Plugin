@@ -1,4 +1,7 @@
 package theflames.buildffa;
+
+import com.comphenix.protocol.ProtocolManager;
+
 public class StaticCache {
 
     private StaticCache() {} //Prevent Instantiation
@@ -8,6 +11,7 @@ public class StaticCache {
 
 
     public static boolean buildmode = false;
+
 
 }
 

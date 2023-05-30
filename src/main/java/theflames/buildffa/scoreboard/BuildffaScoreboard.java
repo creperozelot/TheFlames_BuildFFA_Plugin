@@ -1,6 +1,7 @@
 package theflames.buildffa.scoreboard;
 
 import de.primeapi.primeplugins.spigotapi.api.plugins.coins.CoinsAPI;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import theflames.buildffa.Buildffa;
@@ -36,14 +37,14 @@ public class BuildffaScoreboard extends ScoreboardBuilder{
         setScore("%uperms_prefix%", 10);
         setScore("", 9);
         setScore("§e§lCoins §6↴", 8);
-        setScore(CoinsAPI.getInstance().getCoins(player.getUniqueId()).toString(), 7);
+        setScore("Loading...", 7);
         setScore("", 6);
         setScore("§e§lKills §6↴", 5);
         setScore("Loading...", 4);
         setScore("", 3);
         setScore("§e§lTode §6↴", 2);
         setScore("Loading...", 1);
-        setScore("§6§lthe-§4§lflames.de", 0);
+        setScore("§cthe-flames.de", 0);
     }
 
     @Override
@@ -105,7 +106,7 @@ public class BuildffaScoreboard extends ScoreboardBuilder{
             @Override
             public void run() {
                 if (change == 0) {
-                    setScore("§6§lthe-§4§lflames.de", 0);
+                    setScore( "§cthe-flames.de", 0);
                 } else if (change == 1) {
                     setScore("§9/discord", 0);
                 } else if (change == 2) {

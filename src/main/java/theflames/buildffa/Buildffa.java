@@ -1,15 +1,23 @@
 package theflames.buildffa;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import theflames.buildffa.commands.*;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import theflames.buildffa.listener.*;
 import theflames.buildffa.utils.MYSQL;
+import theflames.buildffa.utils.tempfile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 
 public final class Buildffa extends JavaPlugin {
     private static Buildffa instance;
+
+    private ProtocolManager protocolManager;
 
     static Connection connection;
 
@@ -19,9 +27,11 @@ public final class Buildffa extends JavaPlugin {
 
 
 
+
     @Override
     public void onLoad() {
         instance = this;
+        protocolManager = ProtocolLibrary.getProtocolManager();
     }
 
     @Override
@@ -37,6 +47,14 @@ public final class Buildffa extends JavaPlugin {
             MYSQL.update("CREATE TABLE IF NOT EXISTS Stats(UUID varchar(64), KILLS int, DEATHS int, TEMPKILLS int, TEMPDEATHS int);");
         }
 
+        try {
+            Files.createDirectories(Paths.get(Buildffa.getInstance().getDataFolder().getAbsolutePath() + "/data"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        tempfile.initTempFile();
+
         registerCommand();
         registerListener();
     }
@@ -49,6 +67,7 @@ public final class Buildffa extends JavaPlugin {
         this.getLogger().info("");
         this.getLogger().info("===================");
         MYSQL.disconnect();
+        tempfile.deleteTempfile();
     }
 
     private void registerCommand() {

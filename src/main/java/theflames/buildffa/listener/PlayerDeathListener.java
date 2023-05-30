@@ -25,7 +25,7 @@ public class PlayerDeathListener implements Listener {
     public static String password = Buildffa.getInstance().getConfig().getString("mysql.password");
 
     @EventHandler
-    public void OnPlayerDeath(PlayerDeathEvent event) {
+    public void OnPlayerDeath(PlayerDeathEvent event) throws SQLException {
         Player player = (Player) event.getEntity();
         Player killer = player.getKiller();
         CoinsAPI coinsAPI = CoinsAPI.getInstance();
@@ -54,84 +54,21 @@ public class PlayerDeathListener implements Listener {
         player.sendMessage(StaticCache.prefix + "Du hast §f20§6 Coins §cVerloren.");
         killer.sendMessage(StaticCache.prefix + "Du hast §f10§6 Coins §aBekommen.");
 
+        //Set heal
+        killer.setHealth(20);
         //set MYSQL
         //get and set deathplayer deaths
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
-
-            Statement stmt = conn.createStatement();
-
-            stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + player.getUniqueId() + "'");
-
-            ResultSet resultSet = stmt.getResultSet();
-
-            resultSet.first();
-
-            int playerdeaths = resultSet.getInt("DEATHS") + 1;
-
-            MYSQL.update("UPDATE `Stats` SET `DEATHS`='" + playerdeaths +"' WHERE UUID='" + player.getUniqueId() + "';");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        MYSQL.addDeath(player.getUniqueId().toString());
 
         //get and set killer kills
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
-
-            Statement stmt = conn.createStatement();
-
-            stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + killer.getUniqueId() + "'");
-
-            ResultSet resultSet = stmt.getResultSet();
-
-            resultSet.first();
-
-            int killerkills = resultSet.getInt("KILLS") + 1;
-
-            MYSQL.update("UPDATE `Stats` SET `KILLS`='" + killerkills +"' WHERE UUID='" + killer.getUniqueId() + "';");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        MYSQL.addKill(killer.getUniqueId().toString());
 
         //get and set deathplayer tempdeaths
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
-
-            Statement stmt = conn.createStatement();
-
-            stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + player.getUniqueId() + "'");
-
-            ResultSet resultSet = stmt.getResultSet();
-
-            resultSet.first();
-
-            int templayerdeaths = resultSet.getInt("TEMPDEATHS") + 1;
-
-            MYSQL.update("UPDATE `Stats` SET `TEMPDEATHS`='" + templayerdeaths +"' WHERE UUID='" + player.getUniqueId() + "';");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        MYSQL.addTempDeath(player.getUniqueId().toString());
 
         //get and set killer tempkills
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
+        MYSQL.addTempKill(killer.getUniqueId().toString());
 
-            Statement stmt = conn.createStatement();
-
-            stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + killer.getUniqueId() + "'");
-
-            ResultSet resultSet = stmt.getResultSet();
-
-            resultSet.first();
-
-            int tempkillerkills = resultSet.getInt("TEMPKILLS") + 1;
-
-            MYSQL.update("UPDATE `Stats` SET `TEMPKILLS`='" + tempkillerkills +"' WHERE UUID='" + killer.getUniqueId() + "';");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
+        killer.playSound(killer.getLocation(), Sound.ENTITY_BAT_DEATH, 100, 0);
     }
 }
