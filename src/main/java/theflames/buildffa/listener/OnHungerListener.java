@@ -8,7 +8,6 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 public class OnHungerListener implements Listener {
     @EventHandler
     public void OnPlayerHunger(FoodLevelChangeEvent event) {
-        Player player = (Player) event.getEntity();
-        player.setFoodLevel(20);
+        event.setCancelled(true);
     }
 }

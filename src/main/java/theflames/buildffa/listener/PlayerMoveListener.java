@@ -10,13 +10,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import theflames.buildffa.Buildffa;
+import theflames.buildffa.utils.MYSQL;
 import theflames.buildffa.utils.playerutils;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class PlayerMoveListener implements Listener {
     @EventHandler
-    public void OnPlayerMove(PlayerMoveEvent event) throws IOException {
+    public void OnPlayerMove(PlayerMoveEvent event) throws IOException, SQLException {
         Player player = event.getPlayer();
         Location playerlocation = player.getLocation();
         World spawn = Bukkit.getWorld(Buildffa.getInstance().getConfig().getString("world"));
@@ -35,6 +37,9 @@ public class PlayerMoveListener implements Listener {
         if (playerlocation.getY() <= Buildffa.getInstance().getConfig().getInt("map.deathheight")) {
             player.getInventory().clear();
             player.teleport(spawnpoint);
+
+            MYSQL.addDeath(player.getUniqueId().toString());
+            MYSQL.addTempDeath(player.getUniqueId().toString());
 
             if (playerutils.hasInventoryData(player)) {
                 playerutils.restoreInventory(player);

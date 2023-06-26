@@ -57,43 +57,9 @@ public class BuildffaScoreboard extends ScoreboardBuilder{
             @Override
             public void run() {
 
-                //get player deaths
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
+                setScore("" + MYSQL.getDeathsinInt(player.getUniqueId().toString()), 1);
 
-                    Statement stmt = conn.createStatement();
-
-                    stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + player.getUniqueId() + "'");
-
-                    ResultSet resultSet = stmt.getResultSet();
-
-                    resultSet.first();
-
-                    int playerdeaths = resultSet.getInt("TEMPDEATHS");
-
-                    setScore(String.valueOf(playerdeaths), 1);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-
-                //get  player kills
-                try {
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
-
-                    Statement stmt = conn.createStatement();
-
-                    stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + player.getUniqueId() + "'");
-
-                    ResultSet resultSet = stmt.getResultSet();
-
-                    resultSet.first();
-
-                    int playerkills = resultSet.getInt("TEMPKILLS");
-
-                    setScore(String.valueOf(playerkills), 4);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                setScore("" + MYSQL.getKillsinInt(player.getUniqueId().toString()), 4);
 
                 setScore(CoinsAPI.getInstance().getCoins(player.getUniqueId()).toString(), 7);
 

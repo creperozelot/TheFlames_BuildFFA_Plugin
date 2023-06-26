@@ -64,8 +64,9 @@ public class MYSQL {
     }
 
     public static boolean PlayerExist(String uuid) throws SQLException {
+        con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
         Statement stmt = con.createStatement();
-        return stmt.executeQuery("SELECT * FROM `Stats` WHERE `PLAYER`='" + uuid + "';").next();
+        return stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID`='" + uuid + "';").next();
     }
 
     public static ResultSet getDeath(String uuid) throws SQLException {
@@ -78,7 +79,40 @@ public class MYSQL {
         }
     }
 
+    public static int getDeathsinInt(String uuid) {
+        try {
+            Statement stmt = con.createStatement();
+
+            stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + uuid + "'");
+
+            ResultSet resultSet = stmt.getResultSet();
+
+            resultSet.first();
+
+            return resultSet.getInt("TEMPDEATHS");
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
+
+    public static int getKillsinInt(String uuid) {
+        try {
+            Statement stmt = con.createStatement();
+
+            stmt.executeQuery("SELECT * FROM `Stats` WHERE `UUID` = '" + uuid + "'");
+
+            ResultSet resultSet = stmt.getResultSet();
+
+            resultSet.first();
+
+            return resultSet.getInt("TEMPKILLS");
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
+
     public static void addDeath(String uuid) throws SQLException {
+        con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
         Statement stmt = con.createStatement();
         int deaths = getDeath(uuid).getInt("DEATHS") + 1;
         stmt.execute("UPDATE `Stats` SET `DEATHS`='" + deaths + "';");
@@ -95,6 +129,7 @@ public class MYSQL {
     }
 
     public static void addTempDeath(String uuid) throws SQLException {
+        con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
         Statement stmt = con.createStatement();
         int deaths = getTempDeath(uuid).getInt("TEMPDEATHS") + 1;
         stmt.execute("UPDATE `Stats` SET `TEMPDEATHS`='" + deaths + "';");
@@ -111,6 +146,7 @@ public class MYSQL {
     }
 
     public static void addKill(String uuid) throws SQLException {
+        con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
         Statement stmt = con.createStatement();
         int kills = getKill(uuid).getInt("KILLS") + 1;
         stmt.execute("UPDATE `Stats` SET `KILLS`='" + kills + "';");
@@ -127,6 +163,7 @@ public class MYSQL {
     }
 
     public static void addTempKill(String uuid) throws SQLException {
+        con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
         Statement stmt = con.createStatement();
         int kills = getTempKill(uuid).getInt("TEMPKILLS") + 1;
         stmt.execute("UPDATE `Stats` SET `TEMPKILLS`='" + kills + "';");

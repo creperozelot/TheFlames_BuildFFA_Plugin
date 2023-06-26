@@ -7,6 +7,7 @@ import theflames.buildffa.commands.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import theflames.buildffa.listener.*;
 import theflames.buildffa.utils.MYSQL;
+import theflames.buildffa.utils.kitmanager;
 import theflames.buildffa.utils.tempfile;
 
 import java.io.IOException;
@@ -53,6 +54,11 @@ public final class Buildffa extends JavaPlugin {
             throw new RuntimeException(e);
         }
 
+        try {
+            kitmanager.init();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         tempfile.initTempFile();
 
         registerCommand();

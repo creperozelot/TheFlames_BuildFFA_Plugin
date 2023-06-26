@@ -1,39 +1,95 @@
 package theflames.buildffa.listener;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.PacketContainer;
-import com.comphenix.protocol.wrappers.ChunkPosition;
-import net.minecraft.server.v1_8_R3.Position;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import theflames.buildffa.Buildffa;
-import theflames.buildffa.StaticCache;
+import theflames.buildffa.commands.CommandBuild;
+import theflames.buildffa.placeholderapi.PAPIAnimations;
+import theflames.buildffa.utils.utils;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.UUID;
 
 public class BlockPlaceListener implements Listener  {
     @EventHandler
-    public void onBlockPlace(final BlockPlaceEvent event) throws InvocationTargetException {
-        if (!StaticCache.buildmode) {
+    public void onBlockPlace(final BlockPlaceEvent event) {
+        if (!CommandBuild.buildmodelist.contains(event.getPlayer().getUniqueId())) {
             Player player = event.getPlayer();
             Block block = event.getBlock();
 
-            ProtocolManager manager = ProtocolLibrary.getProtocolManager();
-            PacketContainer packet = manager.createPacket(PacketType.Play.Server.BLOCK_BREAK_ANIMATION);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 0, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 2);
 
-            packet.getPositionModifier().write(0 ,new ChunkPosition(event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ()));
-            packet.getBytes().write(0, (byte) 5);
-            packet.getIntegers().write(0, event.getPlayer().getEntityId() + 1);
-            manager.sendServerPacket(player, packet);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 1, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 3);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 2, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 4);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 3, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 5);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 4, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 6);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 5, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 7);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 6, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 8);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 7, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 9);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PAPIAnimations.blockBreakEffect(player, block.getLocation().toVector(), 8, utils.randomInt(0, 255));
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 10);
+
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    block.setType(Material.AIR);
+                }
+            }.runTaskLater(Buildffa.getInstance(), 10 * 11);
 
 
         }

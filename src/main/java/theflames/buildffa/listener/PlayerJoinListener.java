@@ -15,7 +15,6 @@ import theflames.buildffa.StaticCache;
 import theflames.buildffa.scoreboard.BuildffaScoreboard;
 import theflames.buildffa.utils.MYSQL;
 import theflames.buildffa.utils.playerutils;
-import theflames.buildffa.utils.stats;
 import theflames.buildffa.utils.tempfile;
 
 import java.io.IOException;
@@ -25,7 +24,16 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent event) throws SQLException, IOException {
         Player player = event.getPlayer();
-        World world = player.getWorld();
+
+        //set Mysql
+
+        if (!MYSQL.PlayerExist(player.getUniqueId().toString())) {
+            MYSQL.update("INSERT INTO Stats(UUID, KILLS, DEATHS, TEMPKILLS, TEMPDEATHS) VALUES ('" + player.getUniqueId() + "', '0', '0', '0', '0');");
+
+        }
+        MYSQL.update("UPDATE `Stats` SET `TEMPKILLS`='0',`TEMPDEATHS`='0' WHERE `UUID`='" + player.getUniqueId() + "';");
+
+
         World spawnworld = Bukkit.getWorld(Buildffa.getInstance().getConfig().getString("world"));
         int spawn_x = Buildffa.getInstance().getConfig().getInt("spawn_x");
         int spawn_y = Buildffa.getInstance().getConfig().getInt("spawn_y");
@@ -79,13 +87,7 @@ public class PlayerJoinListener implements Listener {
         new BuildffaScoreboard(player);
 
 
-        //set Mysql
 
-        if (!MYSQL.PlayerExist(player.getUniqueId().toString())) {
-            MYSQL.update("INSERT INTO Stats(UUID, KILLS, DEATHS, TEMPKILLS, TEMPDEATHS) VALUES ('" + player.getUniqueId() + "', '0', '0', '0', '0');");
-
-        }
-        MYSQL.update("UPDATE `Stats` SET `TEMPKILLS`='0',`TEMPDEATHS`='0' WHERE `UUID`='" + player.getUniqueId() + "';");
 
     }
 }
